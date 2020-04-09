@@ -9,9 +9,9 @@ df = pd.read_csv(url, sep=" ",header=None)
 
 df.columns =['time', 'voltage']
 
-t1 = list(df.time)
+t1 = np.array(df.time)
 
-V1 = list(df.voltage) 
+V1 = np.array(df.voltage) 
 
 print(t1)
 
