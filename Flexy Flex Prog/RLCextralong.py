@@ -1,9 +1,17 @@
 import numpy as np
-import matplotlib 
-import matplotlib.pyplot as plt
-import pylab as py 
+import pandas as pd
+import pylab as plt
+from scipy.optimize import curve_fit
 
-t,v = py.loadtxt('datiharmC=0.47.txt', unpack=True)
+
+url = "https://raw.githubusercontent.com/giulio99/Relazione-FFT/master/dati%20prof/smorzextralong34.txt"
+df = pd.read_csv(url, sep=" ",header=None)
+
+df.columns =['time', 'voltage']
+
+t = np.array(df.time)
+
+v = np.array(df.voltage) 
 
 t=t/10e6
 plt.figure(1)
@@ -19,6 +27,7 @@ plt.errorbar(t, v, linestyle='', color='red', marker='.')
 plt.subplot(2,1,2)
 plt.xlabel('$f$ [Hz]')
 plt.ylabel(r'$\bar{V}$(f)[arb.un.]')
+
 
 amp=abs(np.fft.rfft(v))
 spr=amp**2
